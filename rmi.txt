@@ -1,0 +1,59 @@
+import java.rmi.*;
+
+interface HelloIn extends Remote{
+	public String message() throws RemoteException;
+}
+
+
+
+import java.rmi.*;
+import java.rmi.server.*;
+
+class HelloImp extends UnicastRemoteObject implements HelloIn {
+	
+	public HelloImp() throws RemoteException{
+		super();
+	}
+
+	public String message() throws RemoteException{
+		return "Hello World";
+	}
+}
+
+
+
+import java.rmi.Naming;
+
+class HelloServer{
+	public static void main(String[]args){
+		try{ 
+			HelloImp h= new HelloImp();
+			Naming.rebind("hello",h);
+			System.out.println("Server is initialized");
+
+		}catch(Exception e){
+			System.out.println("Error : "+e);
+		}
+
+
+	}
+}
+
+
+
+import java.rmi.Naming;
+
+class HelloServer{
+	public static void main(String[]args){
+		try{ 
+			HelloImp h= new HelloImp();
+			Naming.rebind("hello",h);
+			System.out.println("Server is initialized");
+
+		}catch(Exception e){
+			System.out.println("Error : "+e);
+		}
+
+
+	}
+}
